@@ -7,10 +7,22 @@ const dotenv = require("dotenv")
 const Poem = require("./models/poem")
 
 const app = express();
+const poemData = require("./data");
 
 dotenv.config();
 
 app.use(cors());
+
+const addData = async () => {
+    poemData.map(async (el)=>{
+        await Poem.create({
+            author: el.author,
+            poem_text: el.poem_text
+        })
+    })
+}
+
+addData();
 
 app.get("/all", async (req, res) => {
     const poems = await Poem.find({});
