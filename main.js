@@ -22,7 +22,7 @@ const addData = async () => {
     })
 }
 
-addData();
+// addData();
 
 app.get("/all", async (req, res) => {
     const poems = await Poem.find({});
